@@ -7,8 +7,8 @@ class VisitorsController < ApplicationController
     @owner = Owner.new
 
     # Flash message
-    flash.now[:notice] = 'Welcome Johnny!'
-    flash.now[:alert] = 'My BDAY is soon!'
+    # flash.now[:notice] = 'Welcome Johnny!'
+    # flash.now[:alert] = 'My BDAY is soon!'
     render 'visitors/new'
     Rails.logger.debug 'DEBUG: owner name is ' + @owner.name
 
