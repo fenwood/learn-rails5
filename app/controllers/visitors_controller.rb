@@ -1,17 +1,25 @@
 class VisitorsController < ApplicationController
-	# Do not use layout
-	# layout false
 	
   def new
     Rails.logger.debug 'DEBUG: entering new method'
-    @owner = Owner.new
+    @visitor = Visitor.new
+  end
 
-    # Flash message
-    # flash.now[:notice] = 'Welcome Johnny!'
-    # flash.now[:alert] = 'My BDAY is soon!'
-    render 'visitors/new'
-    Rails.logger.debug 'DEBUG: owner name is ' + @owner.name
+  def create
+	  @visitor = Visitor.new(secure_params)
+	  if @visitor.valid?
+		  @visitor.subscribe
+		  flash[:notice] = "Signed up #{@visitor.email}."
+		  redirect_to root_path
+	  else
+		  render :new
+	  end
+  end
+  
+  private
 
+  def secure_params
+	  params.require(:visitor).permit(:email)
   end
 	
 end
