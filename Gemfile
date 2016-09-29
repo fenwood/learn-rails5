@@ -63,4 +63,9 @@ group :development do
   gem 'rails_layout'
 end
 
+group :test do
+  # Add minitest for TDD
+  gem 'minitest-spec-rails'
+  gem 'minitest-rails-capybara'
+end
 
